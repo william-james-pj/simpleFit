@@ -13,7 +13,7 @@ import {
 
 import AppLoading from "expo-app-loading";
 
-import { Home } from "./src/screens/Home";
+import { Layout } from "./src/layout";
 
 export default function App() {
   const deviceTheme = useColorScheme();
@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Layout />
     </ThemeProvider>
   );
 }
