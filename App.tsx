@@ -1,8 +1,6 @@
 import React from "react";
 
-import { useColorScheme } from "react-native";
-import { ThemeProvider } from "styled-components";
-import themes from "./src/styles/themes";
+import { ColorModeContext } from "./src/contexts/ColorModeContext";
 
 import { useFonts } from "expo-font";
 import {
@@ -16,9 +14,6 @@ import AppLoading from "expo-app-loading";
 import { Layout } from "./src/layout";
 
 export default function App() {
-  const deviceTheme = useColorScheme();
-  const theme = deviceTheme === "light" ? themes.light : themes.dark;
-
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -30,8 +25,8 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ColorModeContext>
       <Layout />
-    </ThemeProvider>
+    </ColorModeContext>
   );
 }
