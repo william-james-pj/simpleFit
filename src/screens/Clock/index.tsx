@@ -1,11 +1,16 @@
 import React from "react";
 
+import { Header } from "../../components/Header";
+
 import { Title, Wrapper } from "./styles";
 
 export function Clock() {
   return (
-    <Wrapper>
-      <Title>Clock</Title>
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <Title>Clock</Title>
+      </Wrapper>
+    </>
   );
 }

@@ -7,8 +7,13 @@ declare module "styled-components" {
       primary: string;
       secundary: string;
 
+      header: string;
+      shadow: string;
+
       interactive: string;
-      disabled: string;
+
+      iconColor: string;
+      iconDisabled: string;
 
       text: string;
 

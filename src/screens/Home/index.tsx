@@ -1,11 +1,16 @@
 import React from "react";
 
+import { Header } from "../../components/Header";
+
 import { Title, Wrapper } from "./styles";
 
 export function Home() {
   return (
-    <Wrapper>
-      <Title>Home</Title>
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <Title>Home</Title>
+      </Wrapper>
+    </>
   );
 }

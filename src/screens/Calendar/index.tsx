@@ -1,11 +1,16 @@
 import React from "react";
 
+import { Header } from "../../components/Header";
+
 import { Title, Wrapper } from "./styles";
 
 export function Calendar() {
   return (
-    <Wrapper>
-      <Title>Calendar</Title>
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <Title>Calendar</Title>
+      </Wrapper>
+    </>
   );
 }

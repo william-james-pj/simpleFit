@@ -13,5 +13,7 @@ export const Icon = styled.View`
 
 export const FontAwesome = styled(FontAwesome5)<FontAwesomeProps>`
   color: ${(props) =>
-    props.active ? props.theme.colors.secundary : props.theme.colors.disabled};
+    props.active
+      ? props.theme.colors.iconColor
+      : props.theme.colors.iconDisabled};
 `;
