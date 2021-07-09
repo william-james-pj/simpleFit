@@ -50,12 +50,32 @@ const DATA: Interfaces.IItem[] = [
         text: "Resulmo do treino, com músculo a serem treinados por exemplo",
         currentGoal: 15,
         totalGoal: 15,
+        exercises: [
+          {
+            title: "Exercício 1",
+            text: "Fazer flexões",
+          },
+          {
+            title: "Exercício 2",
+            text: "Fazer flexões",
+          },
+        ],
       },
       {
         title: "Costas",
         text: "Resulmo do treino, com músculo a serem treinados por exemplo",
         currentGoal: 12,
         totalGoal: 15,
+        exercises: [
+          {
+            title: "Exercício 1",
+            text: "Fazer flexões",
+          },
+          {
+            title: "Exercício 2",
+            text: "Fazer flexões",
+          },
+        ],
       },
     ],
   },
@@ -71,12 +91,32 @@ const DATA: Interfaces.IItem[] = [
         text: "Quantidade de páginas para serem lidas a cada dia",
         currentGoal: 1,
         totalGoal: 10,
+        exercises: [
+          {
+            title: "Meta 1",
+            text: "Ler 1 página",
+          },
+          {
+            title: "Meta 2",
+            text: "Ler 2 página",
+          },
+        ],
       },
       {
         title: "Livro 2",
         text: "Quantidade de páginas para serem lidas a cada dia",
         currentGoal: 8,
         totalGoal: 10,
+        exercises: [
+          {
+            title: "Meta 1",
+            text: "Ler 10% do livro",
+          },
+          {
+            title: "Meta 2",
+            text: "Ler 20% do livro",
+          },
+        ],
       },
     ],
   },
@@ -92,12 +132,32 @@ const DATA: Interfaces.IItem[] = [
         text: "Assuntos a aprender sobre presente em inglês",
         currentGoal: 1,
         totalGoal: 5,
+        exercises: [
+          {
+            title: "Exercício 1",
+            text: "Estudar verbo X",
+          },
+          {
+            title: "Exercício 2",
+            text: "Estudar verbo X",
+          },
+        ],
       },
       {
         title: "Pronomes",
         text: "Assuntos a aprender sobre pronomes em inglês",
         currentGoal: 2,
         totalGoal: 6,
+        exercises: [
+          {
+            title: "Exercício 1",
+            text: "Ler 10% do livro",
+          },
+          {
+            title: "Exercício 2",
+            text: "Estudar verbo X",
+          },
+        ],
       },
     ],
   },

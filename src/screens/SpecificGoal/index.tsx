@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteProp } from "@react-navigation/native";
+import { RouteProp, useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import { BoxGoal } from "../../components/BoxGoal";
@@ -13,10 +13,21 @@ type Props = {
 };
 
 export function SpecificGoal({ route }: Props) {
+  const navigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
+
   const { goals, title } = route.params;
 
-  const renderRows = (item: Interfaces.IObjetoItemGoals) => {
-    return <BoxGoal click={() => {}} goals={item.item} />;
+  function handleGo(exercises: Interfaces.IItemExercise[], title: string) {
+    navigation.navigate("ExerciseGoal", { exercises, title });
+  }
+
+  const renderRows = ({ item }: Interfaces.IObjetoItemGoals) => {
+    return (
+      <BoxGoal
+        click={() => handleGo(item.exercises, item.title)}
+        goals={item}
+      />
+    );
   };
 
   return (

@@ -6,6 +6,7 @@ import {
 
 import { Home } from "../../screens/Home";
 import { SpecificGoal } from "../../screens/SpecificGoal";
+import { ExerciseGoal } from "../../screens/ExerciseGoal";
 
 import { Clock } from "../../screens/Clock";
 import { Calendar } from "../../screens/Calendar";
@@ -25,6 +26,7 @@ export function HomeStack() {
     <Stack.Navigator headerMode="none" screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="SpecificGoal" component={SpecificGoal} />
+      <Stack.Screen name="ExerciseGoal" component={ExerciseGoal} />
     </Stack.Navigator>
   );
 }
