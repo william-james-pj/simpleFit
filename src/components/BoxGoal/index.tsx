@@ -7,20 +7,21 @@ import { IIntem } from "../../screens/Home";
 
 interface BoxGoalProps {
   item: IIntem;
+  click: () => void;
 }
 
-export function BoxGoal(item: BoxGoalProps) {
+export function BoxGoal({ item, click }: BoxGoalProps) {
   return (
     <S.ViewContainer>
-      <RectButton>
+      <RectButton onPress={click}>
         <S.ViewHeader>
-          <S.Title>{item.item.title}</S.Title>
+          <S.Title>{item.title}</S.Title>
         </S.ViewHeader>
         <S.ViewContent>
-          <S.Text>{item.item.text}</S.Text>
+          <S.Text>{item.text}</S.Text>
         </S.ViewContent>
         <S.ViewFooter>
-          <S.Number>{`${item.item.currentGoal}/${item.item.goal}`}</S.Number>
+          <S.Number>{`${item.currentGoal}/${item.goal}`}</S.Number>
         </S.ViewFooter>
       </RectButton>
     </S.ViewContainer>

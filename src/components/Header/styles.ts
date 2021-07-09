@@ -3,7 +3,7 @@ import { fonts } from "../../styles/fonts";
 import { ViewProps } from "react-native";
 
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
 interface ViewProp extends ViewProps {}
 
@@ -26,8 +26,11 @@ export const Title = styled.Text`
   color: ${(props) => props.theme.colors.text};
 `;
 
-export const TouchableOpacity = styled.TouchableOpacity``;
-
 export const Icon = styled(Ionicons)`
   color: ${(props) => props.theme.colors.iconColor};
+`;
+
+export const FontAwesome = styled(FontAwesome5)`
+  color: ${(props) => props.theme.colors.iconColor};
+  padding-left: 5px;
 `;
