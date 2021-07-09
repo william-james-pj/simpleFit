@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { fonts } from "../../styles/fonts";
 
-export const ViewContainer = styled.TouchableOpacity`
+export const ViewContainer = styled.View`
   width: 95%;
   background: ${(props) => props.theme.colors.interactive};
   margin: 0 auto;
