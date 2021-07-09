@@ -7,7 +7,7 @@ export const dark = {
     header: "rgba(34, 36, 43, 1)",
     shadow: "rgba(0, 0, 0, 1)",
 
-    interactive: "rgba(228, 245, 252, 1)",
+    interactive: "rgba(93, 126, 140, 1)",
 
     iconColor: "rgba(248, 248, 248, 1)",
     iconDisabled: "rgba(248, 248, 248, 0.38)",

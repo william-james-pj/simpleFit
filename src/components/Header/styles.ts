@@ -10,7 +10,7 @@ interface ViewProp extends ViewProps {}
 export const ViewContainer = styled.View<ViewProp>`
   width: 100%;
   height: 100px;
-  background: ${(props) => props.theme.colors.header};
+  background: ${(props) => props.theme.colors.primary};
   padding: 0 20px;
   padding-top: ${getStatusBarHeight() + "px"};
   flex-direction: row;
