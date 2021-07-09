@@ -9,14 +9,11 @@ const Tab = createBottomTabNavigator();
 import { FontAwesome5 } from "@expo/vector-icons";
 import { IconTabBar } from "../../components/IconTabBar";
 
-import { Home } from "../../screens/Home";
-import { Clock } from "../../screens/Clock";
-import { Calendar } from "../../screens/Calendar";
-import { User } from "../../screens/User";
+import * as Stack from "./Logged";
 
 import * as S from "./styles";
 
-export function TabNavigator() {
+export function Logged() {
   const theme = useTheme();
 
   const styles = StyleSheet.create({
@@ -48,7 +45,7 @@ export function TabNavigator() {
     >
       <Tab.Screen
         name={"Home"}
-        component={Home}
+        component={Stack.HomeStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconTabBar icon="home" focused={focused} />
@@ -58,7 +55,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name={"Clock"}
-        component={Clock}
+        component={Stack.ClockStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconTabBar icon="clock" focused={focused} />
@@ -82,7 +79,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name={"Calendar"}
-        component={Calendar}
+        component={Stack.CalendarStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconTabBar icon="calendar-alt" focused={focused} />
@@ -92,7 +89,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name={"User"}
-        component={User}
+        component={Stack.UserStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconTabBar icon="user-alt" focused={focused} />
