@@ -1,13 +1,17 @@
 import React from "react";
+import { DrawerScreenProps } from "@react-navigation/drawer";
 
 import { Header } from "../../components/Header";
 
+import * as Interfaces from "../../utils/Interfaces";
 import { Title, Wrapper } from "./styles";
 
-export function Clock() {
+type ClockProps = DrawerScreenProps<Interfaces.RootStackParamList, "Clock">;
+
+export function Clock({ navigation }: ClockProps) {
   return (
     <>
-      <Header />
+      <Header openDrawer={navigation.openDrawer} />
       <Wrapper>
         <Title>Clock</Title>
       </Wrapper>

@@ -8,16 +8,19 @@ import * as S from "./styles";
 
 interface HeaderProps {
   back?: boolean;
+  openDrawer?: () => void;
 }
 
-export function Header({ back = false }: HeaderProps) {
-  const navigation = useNavigation();
+export function Header({ openDrawer = () => {}, back = false }: HeaderProps) {
+  const usenavigation = useNavigation();
 
   function clickGoBack() {
-    navigation.goBack();
+    usenavigation.goBack();
   }
 
-  function openMenu() {}
+  function openMenu() {
+    openDrawer();
+  }
 
   return (
     <S.ViewContainer>

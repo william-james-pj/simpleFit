@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { DrawerScreenProps } from "@react-navigation/drawer";
 
 import { Header } from "../../components/Header";
 import { Message } from "../../components/Message";
@@ -9,12 +10,14 @@ import * as Interfaces from "../../utils/Interfaces";
 
 import * as S from "./styles";
 
-export function Home() {
+type HomeProps = DrawerScreenProps<Interfaces.RootStackParamList, "Home">;
+
+export function Home({ navigation }: HomeProps) {
   const [activeHeader, getScrollPosition] = useScrollPosition();
-  const navigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
+  const usenavigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
 
   function handleGo(goals: Interfaces.IItemGoals[], title: string) {
-    navigation.navigate("SpecificGoal", { goals, title });
+    usenavigation.navigate("SpecificGoal", { goals, title });
   }
 
   const renderRows = ({ item }: Interfaces.IObjetoItem) => {
@@ -24,7 +27,7 @@ export function Home() {
   };
   return (
     <>
-      <Header />
+      <Header openDrawer={navigation.openDrawer} />
       <S.Wrapper>
         <Message title="Home" text={`Hi, User!`} active={activeHeader} />
         <S.FlatListS
