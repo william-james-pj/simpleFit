@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Animated } from "react-native";
 
 import * as S from "./styles";
@@ -10,6 +10,7 @@ interface IMessageProps {
 }
 
 export function Message({ title, text, active }: IMessageProps) {
+  const [styleActive, setStyleActive] = useState(false);
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const animatedOpacity = useRef(new Animated.Value(0)).current;
   const animatedTop = useRef(new Animated.Value(0)).current;
@@ -35,32 +36,32 @@ export function Message({ title, text, active }: IMessageProps) {
         Animated.parallel([
           Animated.timing(animatedHeight, {
             toValue: 100,
-            duration: 600,
+            duration: 400,
             useNativeDriver: false,
           }),
           Animated.timing(animatedOpacity, {
             toValue: 100,
-            duration: 400,
+            duration: 300,
             useNativeDriver: false,
           }),
           Animated.timing(animatedTop, {
             toValue: 100,
-            duration: 500,
+            duration: 400,
             useNativeDriver: false,
           }),
         ]),
-      ]).start();
+      ]).start(() => setStyleActive(false));
     } else {
       Animated.sequence([
         Animated.parallel([
           Animated.timing(animatedHeight, {
             toValue: 0,
-            duration: 600,
+            duration: 400,
             useNativeDriver: false,
           }),
           Animated.timing(animatedOpacity, {
             toValue: 0,
-            duration: 500,
+            duration: 300,
             useNativeDriver: false,
           }),
           Animated.timing(animatedTop, {
@@ -69,7 +70,7 @@ export function Message({ title, text, active }: IMessageProps) {
             useNativeDriver: false,
           }),
         ]),
-      ]).start();
+      ]).start(() => setStyleActive(true));
     }
     return () => {};
   }, [active]);
@@ -81,7 +82,7 @@ export function Message({ title, text, active }: IMessageProps) {
         overflow: "hidden",
       }}
     >
-      <S.ViewContainer style={ShadowStyled}>
+      <S.ViewContainer style={styleActive ? ShadowStyled : {}}>
         <S.ViewText>
           <Animated.Text style={{ opacity: interpolatedOpacity }}>
             <S.Text>{text}</S.Text>

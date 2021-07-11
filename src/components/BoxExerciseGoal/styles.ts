@@ -7,6 +7,7 @@ export const ViewContainer = styled.View`
   margin: 0 0 0 auto;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  overflow: hidden;
 `;
 
 export const ViewHeader = styled.View`

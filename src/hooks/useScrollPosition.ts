@@ -12,7 +12,7 @@ export function useScrollPosition(): Response {
   function getScrollPosition(event: NativeSyntheticEvent<NativeScrollEvent>) {
     const positionY = event.nativeEvent.contentOffset.y;
     if (positionY > 50 && !activeHeader) setActiveHeader(true);
-    else if (positionY < 30 && activeHeader) setActiveHeader(false);
+    else if (positionY < 20 && activeHeader) setActiveHeader(false);
   }
 
   return [activeHeader, getScrollPosition];
