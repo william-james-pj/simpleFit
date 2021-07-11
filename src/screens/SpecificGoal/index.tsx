@@ -4,6 +4,7 @@ import { RouteProp, useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/Header";
 import { BoxGoal } from "../../components/BoxGoal";
 import { Message } from "../../components/Message";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import * as Interfaces from "../../utils/Interfaces";
 
 import * as S from "./styles";
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export function SpecificGoal({ route }: Props) {
+  const [activeHeader, getScrollPosition] = useScrollPosition();
   const navigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
 
   const { goals, title } = route.params;
@@ -34,8 +36,11 @@ export function SpecificGoal({ route }: Props) {
     <>
       <Header back />
       <S.Wrapper>
+        <Message title={title} text={`Let's go, User!`} active={activeHeader} />
         <S.FlatListS
-          ListHeaderComponent={<Message title={title} />}
+          onScroll={(event) => {
+            getScrollPosition(event);
+          }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={goals}
           ItemSeparatorComponent={() => <S.Separator></S.Separator>}

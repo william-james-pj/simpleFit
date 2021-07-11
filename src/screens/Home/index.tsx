@@ -1,14 +1,16 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import { Message } from "../../components/Message";
 import { BoxGoal } from "../../components/BoxGoal";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import * as Interfaces from "../../utils/Interfaces";
 
 import * as S from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
+  const [activeHeader, getScrollPosition] = useScrollPosition();
   const navigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
 
   function handleGo(goals: Interfaces.IItemGoals[], title: string) {
@@ -24,8 +26,11 @@ export function Home() {
     <>
       <Header />
       <S.Wrapper>
+        <Message title="Home" text={`Hi, User!`} active={activeHeader} />
         <S.FlatListS
-          ListHeaderComponent={<Message title="Home" />}
+          onScroll={(event) => {
+            getScrollPosition(event);
+          }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={DATA}
           ItemSeparatorComponent={() => <S.Separator></S.Separator>}
@@ -49,6 +54,22 @@ const DATA: Interfaces.IItem[] = [
         title: "Full Body",
         text: "Resulmo do treino, com músculo a serem treinados por exemplo",
         currentGoal: 15,
+        totalGoal: 15,
+        exercises: [
+          {
+            title: "Exercício 1",
+            text: "Fazer flexões",
+          },
+          {
+            title: "Exercício 2",
+            text: "Fazer flexões",
+          },
+        ],
+      },
+      {
+        title: "Costas",
+        text: "Resulmo do treino, com músculo a serem treinados por exemplo",
+        currentGoal: 12,
         totalGoal: 15,
         exercises: [
           {

@@ -5,10 +5,11 @@ import { Fontisto } from "@expo/vector-icons";
 
 export const ViewContainer = styled.View`
   width: 100%;
-  margin: 4px 0 15px;
+  height: 88%;
+  margin: 4px 0 5px;
   padding: 20px 30px;
   background: ${(props) => props.theme.colors.header};
-
+  overflow: hidden;
   flex-direction: row;
 `;
 
