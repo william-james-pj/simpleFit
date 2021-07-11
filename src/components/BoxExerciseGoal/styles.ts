@@ -5,6 +5,8 @@ export const ViewContainer = styled.View`
   width: 95%;
   background: ${(props) => props.theme.colors.interactive};
   margin: 0 0 0 auto;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 `;
 
 export const ViewHeader = styled.View`
