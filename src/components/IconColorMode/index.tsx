@@ -15,7 +15,6 @@ export function IconColorMode() {
         <S.ModeIcon
           name={theme.title === "light" ? "moon" : "sunny"}
           size={25}
-          color={"red"}
         />
       </RectButton>
       <StatusBar style={theme.title === "light" ? "dark" : "light"} />
