@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RectButton } from "react-native-gesture-handler";
 
 import * as S from "./styles";
@@ -12,18 +12,30 @@ interface BoxGoalProps {
 }
 
 export function BoxGoal({ item, goals, click }: BoxGoalProps) {
+  const [titleInput, setTitleInput] = useState(item?.title || goals?.title);
+  const [textInput, setTextInput] = useState(item?.text || goals?.text);
+
   return (
     <S.ViewContainer>
       <RectButton onPress={click}>
         <S.ViewHeader>
-          <S.Title>{item?.title || goals?.title}</S.Title>
+          <S.InputTitle
+            underlineColorAndroid="transparent"
+            value={titleInput}
+            onChangeText={(text) => setTitleInput(text)}
+          />
         </S.ViewHeader>
         <S.ViewContent>
-          <S.Text>{item?.text || goals?.text}</S.Text>
+          <S.InputText
+            underlineColorAndroid="transparent"
+            multiline
+            value={textInput}
+            onChangeText={(text) => setTextInput(text)}
+          />
         </S.ViewContent>
         <S.ViewFooter>
           <S.Number>{`${item?.currentGoal || goals?.currentGoal}/${
-            item?.totalGoal || goals?.totalGoal
+            item?.goals?.length || goals?.exercises?.length
           }`}</S.Number>
         </S.ViewFooter>
       </RectButton>

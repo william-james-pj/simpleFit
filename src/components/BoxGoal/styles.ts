@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { fonts } from "../../styles/fonts";
+import { TextInput } from "react-native";
 
 export const ViewContainer = styled.View`
   width: 95%;
@@ -16,7 +17,9 @@ export const ViewHeader = styled.View`
   justify-content: space-between;
 `;
 
-export const Title = styled.Text`
+export const InputTitle = styled(TextInput)`
+  width: auto;
+  min-width: 50%;
   font-family: ${fonts.type.text700};
   font-size: ${fonts.size.normal};
   color: ${(props) => props.theme.colors.text};
@@ -26,7 +29,7 @@ export const ViewContent = styled.View`
   padding: 10px 20px;
 `;
 
-export const Text = styled.Text`
+export const InputText = styled(TextInput)`
   font-family: ${fonts.type.text400};
   font-size: ${fonts.size.sm};
   color: ${(props) => props.theme.colors.text};

@@ -14,16 +14,14 @@ export interface IItem {
   title: string;
   text: string;
   currentGoal: number;
-  totalGoal: number;
-  goals: IItemGoals[];
+  goals?: IItemGoals[];
 }
 
 export interface IItemGoals {
   title: string;
   text: string;
   currentGoal: number;
-  totalGoal: number;
-  exercises: IItemExercise[];
+  exercises?: IItemExercise[];
 }
 
 export interface IItemExercise {

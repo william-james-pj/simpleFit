@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from "react-redux";
 
 import { ColorModeContext } from "./src/contexts/ColorModeContext";
 
@@ -12,6 +13,7 @@ import {
 import AppLoading from "expo-app-loading";
 
 import { Routes } from "./src/routes";
+import store from "./src/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +28,9 @@ export default function App() {
 
   return (
     <ColorModeContext>
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </ColorModeContext>
   );
 }

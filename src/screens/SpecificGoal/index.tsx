@@ -26,7 +26,7 @@ export function SpecificGoal({ route }: Props) {
   const renderRows = ({ item }: Interfaces.IObjetoItemGoals) => {
     return (
       <BoxGoal
-        click={() => handleGo(item.exercises, item.title)}
+        click={() => handleGo(item.exercises || [], item.title)}
         goals={item}
       />
     );
