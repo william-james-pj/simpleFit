@@ -2,43 +2,33 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 export type RootStackParamList = {
   Home: undefined;
-  SpecificGoal: { goals: IItemGoals[]; title: string };
-  ExerciseGoal: { exercises: IItemExercise[]; title: string };
+  SpecificGoal: { goals: IItemSpecificGoals[]; title: string };
+  ExerciseGoal: { exercises: IItemExerciseGoals[]; title: string };
   Clock: undefined;
   Calendar: undefined;
   User: undefined;
 };
 
-export interface IItem {
+export interface IItemGoals {
   id: string;
   title: string;
   text: string;
-  currentGoal: number;
-  goals?: IItemGoals[];
+  elements?: IItemSpecificGoals[];
 }
 
-export interface IItemGoals {
+export interface IItemSpecificGoals {
+  id: string;
   title: string;
   text: string;
-  currentGoal: number;
-  exercises?: IItemExercise[];
+  finishing: boolean;
+  elements?: IItemExerciseGoals[];
 }
 
-export interface IItemExercise {
+export interface IItemExerciseGoals {
+  id: string;
   title: string;
   text: string;
-}
-
-export interface IObjetoItem {
-  item: IItem;
-}
-
-export interface IObjetoItemGoals {
-  item: IItemGoals;
-}
-
-export interface IObjetoItemItemExercise {
-  item: IItemExercise;
+  finishing: boolean;
 }
 
 export type SpecificGoalRouteProp = StackNavigationProp<

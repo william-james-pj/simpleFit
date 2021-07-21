@@ -19,15 +19,15 @@ export function SpecificGoal({ route }: Props) {
 
   const { goals, title } = route.params;
 
-  function handleGo(exercises: Interfaces.IItemExercise[], title: string) {
+  function handleGo(exercises: Interfaces.IItemExerciseGoals[], title: string) {
     navigation.navigate("ExerciseGoal", { exercises, title });
   }
 
-  const renderRows = ({ item }: Interfaces.IObjetoItemGoals) => {
+  const renderRows = ({ item }: { item: Interfaces.IItemSpecificGoals }) => {
     return (
       <BoxGoal
-        click={() => handleGo(item.exercises || [], item.title)}
-        goals={item}
+        click={() => handleGo(item.elements || [], item.title)}
+        specificGoals={item}
       />
     );
   };

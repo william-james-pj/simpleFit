@@ -1,19 +1,43 @@
 import React, { useState } from "react";
 import { RectButton } from "react-native-gesture-handler";
 
+import * as I from "../../utils/Interfaces";
+
 import * as S from "./styles";
 
-import * as Interfaces from "../../utils/Interfaces";
-
 interface BoxGoalProps {
-  item?: Interfaces.IItem;
-  goals?: Interfaces.IItemGoals;
+  specificGoals?: I.IItemSpecificGoals;
+  goals?: I.IItemGoals;
   click: () => void;
 }
 
-export function BoxGoal({ item, goals, click }: BoxGoalProps) {
-  const [titleInput, setTitleInput] = useState(item?.title || goals?.title);
-  const [textInput, setTextInput] = useState(item?.text || goals?.text);
+export function BoxGoal({ specificGoals, goals, click }: BoxGoalProps) {
+  const [titleInput, setTitleInput] = useState(
+    specificGoals?.title || goals?.title
+  );
+  const [textInput, setTextInput] = useState(
+    specificGoals?.text || goals?.text
+  );
+
+  function countFinishingSpecific(item?: I.IItemSpecificGoals) {
+    return item?.elements?.reduce(
+      (accumulator, currentValue) =>
+        Object.values(currentValue).some((element) => element === true)
+          ? ++accumulator
+          : accumulator,
+      0
+    );
+  }
+
+  function countFinishingGoals(item?: I.IItemGoals) {
+    return item?.elements?.reduce(
+      (accumulator, currentValue) =>
+        Object.values(currentValue).some((element) => element === true)
+          ? ++accumulator
+          : accumulator,
+      0
+    );
+  }
 
   return (
     <S.ViewContainer>
@@ -34,8 +58,12 @@ export function BoxGoal({ item, goals, click }: BoxGoalProps) {
           />
         </S.ViewContent>
         <S.ViewFooter>
-          <S.Number>{`${item?.currentGoal || goals?.currentGoal}/${
-            item?.goals?.length || goals?.exercises?.length
+          <S.Number>{`${
+            specificGoals
+              ? countFinishingSpecific(specificGoals)
+              : countFinishingGoals(goals)
+          }/${
+            specificGoals?.elements?.length || goals?.elements?.length
           }`}</S.Number>
         </S.ViewFooter>
       </RectButton>

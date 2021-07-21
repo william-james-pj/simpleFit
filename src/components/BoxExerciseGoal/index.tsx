@@ -6,7 +6,7 @@ import * as S from "./styles";
 import * as Interfaces from "../../utils/Interfaces";
 
 interface BoxExerciseGoalProps {
-  exercise: Interfaces.IItemExercise;
+  exercise: Interfaces.IItemExerciseGoals;
   click: () => void;
 }
 

@@ -23,15 +23,15 @@ export function Home({ navigation }: HomeProps) {
   const [activeHeader, getScrollPosition] = useScrollPosition();
   const usenavigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
 
-  function handleGo(goals: Interfaces.IItemGoals[], title: string) {
+  function handleGo(goals: Interfaces.IItemSpecificGoals[], title: string) {
     usenavigation.navigate("SpecificGoal", { goals, title });
   }
 
-  const renderRows = ({ item }: Interfaces.IObjetoItem) => {
+  const renderRows = ({ item }: { item: Interfaces.IItemGoals }) => {
     return (
       <BoxGoal
-        click={() => handleGo(item.goals || [], item.title)}
-        item={item}
+        click={() => handleGo(item.elements || [], item.title)}
+        goals={item}
       />
     );
   };
