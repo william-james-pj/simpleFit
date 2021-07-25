@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IItem } from "../../utils/Interfaces";
+import { IItemGoals, IItemSpecificGoals } from "../../utils/Interfaces";
 import { GoalsState } from "./types";
 
 import { fetchGoals } from "./actions";
@@ -14,7 +14,13 @@ const initialState: GoalsState = {
 const goals = createSlice({
   name: "goals",
   initialState,
-  reducers: {},
+  reducers: {
+    updateGoals(state, action: PayloadAction<IItemGoals>) {
+      state.data = state.data.map((goal) =>
+        goal.id === action.payload ? action.payload : goal
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchGoals.pending, (state) => {
       state.loading = true;
@@ -29,5 +35,5 @@ const goals = createSlice({
   },
 });
 
-export const {} = goals.actions;
+export const { updateGoals } = goals.actions;
 export default goals.reducer;

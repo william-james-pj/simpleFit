@@ -2,7 +2,7 @@ import React from "react";
 import { RouteProp, useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
-import { BoxGoal } from "../../components/BoxGoal";
+import { BoxSpecificGoal } from "../../components/BoxSpecificGoals";
 import { Message } from "../../components/Message";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import * as Interfaces from "../../utils/Interfaces";
@@ -25,7 +25,7 @@ export function SpecificGoal({ route }: Props) {
 
   const renderRows = ({ item }: { item: Interfaces.IItemSpecificGoals }) => {
     return (
-      <BoxGoal
+      <BoxSpecificGoal
         click={() => handleGo(item.elements || [], item.title)}
         specificGoals={item}
       />

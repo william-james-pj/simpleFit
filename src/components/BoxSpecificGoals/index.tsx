@@ -1,36 +1,26 @@
 import React, { useState } from "react";
 import { RectButton } from "react-native-gesture-handler";
 
-import { useGoalsDispatch } from "../../hooks/useGoals";
-import { updateGoals } from "../../store/goals";
+// import { useGoalsDispatch } from "../../hooks/useGoals";
+// import {} from "../../store/goals";
 
 import * as I from "../../utils/Interfaces";
 
-import * as S from "./styles";
+import * as S from "../BoxGoal/styles";
 
 interface BoxGoalProps {
-  goals: I.IItemGoals;
+  specificGoals: I.IItemSpecificGoals;
   click: () => void;
 }
 
-export function BoxGoal({ goals, click }: BoxGoalProps) {
-  const dispatch = useGoalsDispatch();
+export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
+  // const dispatch = useGoalsDispatch();
 
-  const [titleInput, setTitleInput] = useState(goals.title);
-  const [textInput, setTextInput] = useState(goals.text);
+  const [titleInput, setTitleInput] = useState(specificGoals?.title);
+  const [textInput, setTextInput] = useState(specificGoals?.text);
 
-  const handleTitleUpdate = () => {
-    goals.title = titleInput;
-    dispatch(updateGoals(goals));
-  };
-
-  const handleTextUpdate = () => {
-    goals.text = textInput;
-    dispatch(updateGoals(goals));
-  };
-
-  function countFinishingGoals(item?: I.IItemGoals) {
-    return item?.elements?.reduce(
+  function countFinishingSpecific(item: I.IItemSpecificGoals) {
+    return item.elements?.reduce(
       (accumulator, currentValue) =>
         Object.values(currentValue).some((element) => element === true)
           ? ++accumulator
@@ -38,6 +28,10 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
       0
     );
   }
+
+  const handleTitleUpdate = () => {
+    specificGoals.title = titleInput;
+  };
 
   return (
     <S.ViewContainer>
@@ -56,12 +50,11 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
             multiline
             value={textInput}
             onChangeText={(text) => setTextInput(text)}
-            onEndEditing={handleTextUpdate}
           />
         </S.ViewContent>
         <S.ViewFooter>
-          <S.Number>{`${countFinishingGoals(goals)}/${
-            goals.elements?.length
+          <S.Number>{`${countFinishingSpecific(specificGoals)}/${
+            specificGoals.elements?.length
           }`}</S.Number>
         </S.ViewFooter>
       </RectButton>
