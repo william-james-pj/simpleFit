@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { RectButton } from "react-native-gesture-handler";
 
-import { useGoalsDispatch } from "../../hooks/useGoals";
-import { updateGoals } from "../../store/goals";
+import { useGoalsDispatch } from "../../../hooks/useGoals";
+import { updateGoals } from "../../../store/goals";
 
-import * as I from "../../utils/Interfaces";
+import { IItemGoals } from "../../../@types/types";
 
 import * as S from "./styles";
 
 interface BoxGoalProps {
-  goals: I.IItemGoals;
+  goals: IItemGoals;
   click: () => void;
 }
 
@@ -29,7 +29,7 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
     dispatch(updateGoals(goals));
   };
 
-  function countFinishingGoals(item?: I.IItemGoals) {
+  function countFinishingGoals(item?: IItemGoals) {
     return item?.elements?.reduce(
       (accumulator, currentValue) =>
         Object.values(currentValue).some((element) => element === true)

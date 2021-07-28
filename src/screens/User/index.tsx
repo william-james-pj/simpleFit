@@ -3,18 +3,18 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 
 import { Header } from "../../components/Header";
 
-import * as Interfaces from "../../utils/Interfaces";
-import { Title, Wrapper } from "./styles";
+import { RootStackParamList } from "../../@types/types";
+import * as S from "./styles";
 
-type UserProps = DrawerScreenProps<Interfaces.RootStackParamList, "User">;
+type UserProps = DrawerScreenProps<RootStackParamList, "User">;
 
 export function User({ navigation }: UserProps) {
   return (
     <>
       <Header openDrawer={navigation.openDrawer} />
-      <Wrapper>
-        <Title>User</Title>
-      </Wrapper>
+      <S.Wrapper>
+        <S.Title>User</S.Title>
+      </S.Wrapper>
     </>
   );
 }

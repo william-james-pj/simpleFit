@@ -2,28 +2,34 @@ import React from "react";
 import { RouteProp, useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
-import { BoxSpecificGoal } from "../../components/BoxSpecificGoals";
+import { BoxSpecificGoal } from "./BoxSpecificGoals";
 import { Message } from "../../components/Message";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
-import * as Interfaces from "../../utils/Interfaces";
+
+import {
+  GoalsSpecificRouteProp,
+  IItemExerciseGoals,
+  IItemSpecificGoals,
+  RootStackParamList,
+} from "../../@types/types";
 
 import * as S from "./styles";
 
 type Props = {
-  route: RouteProp<Interfaces.RootStackParamList, "SpecificGoal">;
+  route: RouteProp<RootStackParamList, "GoalsSpecific">;
 };
 
-export function SpecificGoal({ route }: Props) {
+export function GoalsSpecific({ route }: Props) {
   const [activeHeader, getScrollPosition] = useScrollPosition();
-  const navigation = useNavigation<Interfaces.SpecificGoalRouteProp>();
+  const navigation = useNavigation<GoalsSpecificRouteProp>();
 
   const { goals, title } = route.params;
 
-  function handleGo(exercises: Interfaces.IItemExerciseGoals[], title: string) {
-    navigation.navigate("ExerciseGoal", { exercises, title });
+  function handleGo(exercises: IItemExerciseGoals[], title: string) {
+    navigation.navigate("GoalsExercise", { exercises, title });
   }
 
-  const renderRows = ({ item }: { item: Interfaces.IItemSpecificGoals }) => {
+  const renderRows = ({ item }: { item: IItemSpecificGoals }) => {
     return (
       <BoxSpecificGoal
         click={() => handleGo(item.elements || [], item.title)}
@@ -43,9 +49,10 @@ export function SpecificGoal({ route }: Props) {
           }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={goals}
-          ItemSeparatorComponent={() => <S.Separator></S.Separator>}
           renderItem={renderRows}
           keyExtractor={(item, index) => `${item.title}+${index}`}
+          ItemSeparatorComponent={() => <S.Separator></S.Separator>}
+          ListFooterComponent={() => <S.FooterView></S.FooterView>}
         />
       </S.Wrapper>
     </>

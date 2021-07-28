@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { fonts } from "../../styles/fonts";
+import { fonts } from "../../../styles/fonts";
 
 import { FontAwesome5 } from "@expo/vector-icons";
 

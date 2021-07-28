@@ -1,7 +1,7 @@
-import { IItem } from "../../utils/Interfaces";
+import { IItemGoals } from "../../@types/types";
 
 export interface GoalsState {
-  data: IItem[];
+  data: IItemGoals[];
   error: boolean;
   loading: boolean;
 }

@@ -1,64 +1,77 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+
+import { StyleSheet, View } from "react-native";
 import { useTheme } from "styled-components";
 
-import "react-native-gesture-handler";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { IconTabBar } from "./IconTabBar";
+
+import {
+  BottomTabBar,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 const Tab = createBottomTabNavigator();
 
-import { FontAwesome5 } from "@expo/vector-icons";
-import { IconTabBar } from "../../components/IconTabBar";
-
-import { Home } from "../../screens/Home";
+import { StackNavigator } from "./StackNavigator";
 import { Clock } from "../../screens/Clock";
 import { Calendar } from "../../screens/Calendar";
 import { User } from "../../screens/User";
+import { FloatingButton } from "./FloatingButton";
 
-import * as S from "./styles";
-
-
-export function TabNavigation() {
+export function BottomTabNavigator() {
   const theme = useTheme();
 
   const styles = StyleSheet.create({
-    barBottom: {
+    navigatorContainer: {
+      backgroundColor: `transparent`,
+      height: 80,
+
       position: "absolute",
       bottom: 0,
-      marginHorizontal: 0,
-      height: 60,
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      paddingHorizontal: 20,
-      backgroundColor: `${theme.colors.header}`,
-
-      shadowColor: `${theme.colors.shadow}`,
-      shadowOpacity: 0.06,
+      left: 0,
+      right: 0,
+      shadowColor: "#000",
       shadowOffset: {
-        width: 10,
-        height: 10,
+        width: 0,
+        height: 1,
       },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+    },
+    navigator: {
+      position: "absolute",
+      borderTopWidth: 0,
+      backgroundColor: "transparent",
+      elevation: 30,
+      height: 60,
     },
   });
 
   return (
     <Tab.Navigator
+      tabBar={(props) => (
+        <View style={styles.navigatorContainer}>
+          <BottomTabBar {...props} />
+        </View>
+      )}
       tabBarOptions={{
         showLabel: false,
-        style: styles.barBottom,
+        style: styles.navigator,
+        tabStyle: {
+          backgroundColor: `${theme.colors.header}`,
+        },
       }}
     >
       <Tab.Screen
-        name={"Home"}
-        component={Home}
+        name="Home"
+        component={StackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <IconTabBar icon="home" focused={focused} />
           ),
         }}
       />
-
       <Tab.Screen
-        name={"Clock"}
+        name="Clock"
         component={Clock}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -71,18 +84,14 @@ export function TabNavigation() {
         name={"ActionButton"}
         component={EmptyScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <S.TouchableOpacity>
-              <S.ActionButtonView>
-                <FontAwesome5 name="plus" size={25} color={"white"} />
-              </S.ActionButtonView>
-            </S.TouchableOpacity>
+          tabBarButton: (props) => (
+            <FloatingButton bgColor={theme.colors.header} />
           ),
         }}
       />
 
       <Tab.Screen
-        name={"Calendar"}
+        name="Calendar"
         component={Calendar}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -90,9 +99,8 @@ export function TabNavigation() {
           ),
         }}
       />
-
       <Tab.Screen
-        name={"User"}
+        name="User"
         component={User}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -105,5 +113,5 @@ export function TabNavigation() {
 }
 
 function EmptyScreen() {
-  return <S.ActionView></S.ActionView>;
+  return <View></View>;
 }

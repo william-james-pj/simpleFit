@@ -3,18 +3,18 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 
 import { Header } from "../../components/Header";
 
-import * as Interfaces from "../../utils/Interfaces";
-import { Title, Wrapper } from "./styles";
+import { RootStackParamList } from "../../@types/types";
+import * as S from "./styles";
 
-type ClockProps = DrawerScreenProps<Interfaces.RootStackParamList, "Clock">;
+type ClockProps = DrawerScreenProps<RootStackParamList, "Clock">;
 
 export function Clock({ navigation }: ClockProps) {
   return (
     <>
       <Header openDrawer={navigation.openDrawer} />
-      <Wrapper>
-        <Title>Clock</Title>
-      </Wrapper>
+      <S.Wrapper>
+        <S.Title>Clock</S.Title>
+      </S.Wrapper>
     </>
   );
 }

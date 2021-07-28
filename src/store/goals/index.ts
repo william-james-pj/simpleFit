@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IItemGoals, IItemSpecificGoals } from "../../utils/Interfaces";
 import { GoalsState } from "./types";
 
 import { fetchGoals } from "./actions";
+import { IItemGoals } from "../../@types/types";
 
 const initialState: GoalsState = {
   data: [],
@@ -17,7 +17,7 @@ const goals = createSlice({
   reducers: {
     updateGoals(state, action: PayloadAction<IItemGoals>) {
       state.data = state.data.map((goal) =>
-        goal.id === action.payload ? action.payload : goal
+        goal.id === action.payload.id ? action.payload : goal
       );
     },
   },

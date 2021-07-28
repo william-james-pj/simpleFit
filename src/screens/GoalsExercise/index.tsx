@@ -3,22 +3,27 @@ import { RouteProp } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import { Message } from "../../components/Message";
-import { BoxExerciseGoal } from "../../components/BoxExerciseGoal";
+import { BoxExerciseGoal } from "./BoxExerciseGoal";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
-import * as Interfaces from "../../utils/Interfaces";
+
+import { IItemExerciseGoals, RootStackParamList } from "../../@types/types";
 
 import * as S from "./styles";
 
-type Props = {
-  route: RouteProp<Interfaces.RootStackParamList, "ExerciseGoal">;
+type GoalsExerciseProps = {
+  route: RouteProp<RootStackParamList, "GoalsExercise">;
 };
 
-export function ExerciseGoal({ route }: Props) {
+type RenderRowsObject = {
+  item: IItemExerciseGoals;
+};
+
+export function GoalsExercise({ route }: GoalsExerciseProps) {
   const [activeHeader, getScrollPosition] = useScrollPosition();
   const { exercises, title } = route.params;
 
-  const renderRows = (item: Interfaces.IObjetoItemItemExercise) => {
-    return <BoxExerciseGoal click={() => {}} exercise={item.item} />;
+  const renderRows = ({ item }: RenderRowsObject) => {
+    return <BoxExerciseGoal click={() => {}} exercise={item} />;
   };
 
   return (
@@ -32,9 +37,10 @@ export function ExerciseGoal({ route }: Props) {
           }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={exercises}
-          ItemSeparatorComponent={() => <S.Separator></S.Separator>}
           renderItem={renderRows}
           keyExtractor={(item, index) => `${item.title}+${index}`}
+          ItemSeparatorComponent={() => <S.Separator></S.Separator>}
+          ListFooterComponent={() => <S.FooterView></S.FooterView>}
         />
       </S.Wrapper>
     </>

@@ -1,12 +1,12 @@
 import React from "react";
 import { RectButton } from "react-native-gesture-handler";
 
+import { IItemExerciseGoals } from "../../../@types/types";
+
 import * as S from "./styles";
 
-import * as Interfaces from "../../utils/Interfaces";
-
 interface BoxExerciseGoalProps {
-  exercise: Interfaces.IItemExerciseGoals;
+  exercise: IItemExerciseGoals;
   click: () => void;
 }
 

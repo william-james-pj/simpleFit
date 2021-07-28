@@ -1,14 +1,17 @@
 import React from "react";
+
 import {
   createStackNavigator,
   StackNavigationOptions,
 } from "@react-navigation/stack";
 
-import { TabNavigation } from "./TabNavigator";
-import { SpecificGoal } from "../../screens/SpecificGoal";
-import { ExerciseGoal } from "../../screens/ExerciseGoal";
+import { Goals } from "../../screens/Goals";
+import { GoalsSpecific } from "../../screens/GoalsSpecific";
+import { GoalsExercise } from "../../screens/GoalsExercise";
 
-import * as Interfaces from "../../utils/Interfaces";
+import { RootStackParamList } from "../../@types/types";
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const screenOptions: StackNavigationOptions = {
   cardStyle: {
@@ -16,14 +19,12 @@ const screenOptions: StackNavigationOptions = {
   },
 };
 
-const Stack = createStackNavigator<Interfaces.RootStackParamList>();
-
-export function HomeStack() {
+export function StackNavigator() {
   return (
     <Stack.Navigator headerMode="none" screenOptions={screenOptions}>
-      <Stack.Screen name="Home" component={TabNavigation} />
-      <Stack.Screen name="SpecificGoal" component={SpecificGoal} />
-      <Stack.Screen name="ExerciseGoal" component={ExerciseGoal} />
+      <Stack.Screen name="Goals" component={Goals} />
+      <Stack.Screen name="GoalsSpecific" component={GoalsSpecific} />
+      <Stack.Screen name="GoalsExercise" component={GoalsExercise} />
     </Stack.Navigator>
   );
 }
