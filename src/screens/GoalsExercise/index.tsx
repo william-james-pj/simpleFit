@@ -4,7 +4,6 @@ import { RouteProp } from "@react-navigation/native";
 import { Header } from "../../components/Header";
 import { Message } from "../../components/Message";
 import { BoxExerciseGoal } from "./BoxExerciseGoal";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 import { IItemExerciseGoals, RootStackParamList } from "../../@types/types";
 
@@ -19,7 +18,6 @@ type RenderRowsObject = {
 };
 
 export function GoalsExercise({ route }: GoalsExerciseProps) {
-  const [activeHeader, getScrollPosition] = useScrollPosition();
   const { exercises, title } = route.params;
 
   const renderRows = ({ item }: RenderRowsObject) => {
@@ -30,11 +28,8 @@ export function GoalsExercise({ route }: GoalsExerciseProps) {
     <>
       <Header back />
       <S.Wrapper>
-        <Message title={title} text={`Let's go, User!`} active={activeHeader} />
+        <Message title={title} text={`Let's go, User!`} active={true} />
         <S.FlatListS
-          onScroll={(event) => {
-            getScrollPosition(event);
-          }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={exercises}
           renderItem={renderRows}

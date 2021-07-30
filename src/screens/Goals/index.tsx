@@ -11,12 +11,10 @@ import { Header } from "../../components/Header";
 import { Message } from "../../components/Message";
 import { BoxGoal } from "./BoxGoal";
 import { Loader } from "../../components/Loader";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 import {
   GoalsSpecificRouteProp,
   IItemGoals,
-  IItemSpecificGoals,
   RootStackParamList,
 } from "../../@types/types";
 
@@ -29,7 +27,6 @@ export function Goals({ navigation }: GoalsProps) {
   const dispatch = useGoalsDispatch();
   const goalsState = useGoalsSelector((state) => state.goals);
 
-  const [activeHeader, getScrollPosition] = useScrollPosition();
   const usenavigation = useNavigation<GoalsSpecificRouteProp>();
 
   function handleGo(goal: IItemGoals) {
@@ -49,16 +46,13 @@ export function Goals({ navigation }: GoalsProps) {
     <>
       <Header openDrawer={navigation.openDrawer} />
       <S.Wrapper>
-        <Message title="Home" text={`Hi, User!`} active={activeHeader} />
+        <Message title="Home" text={`Hi, User!`} active={false} />
 
         {goalsState.loading ? (
           <Loader />
         ) : (
           <S.FlatListS
             ref={flatList}
-            onScroll={(event) => {
-              getScrollPosition(event);
-            }}
             removeClippedSubviews={false}
             contentContainerStyle={{ paddingBottom: 25 }}
             data={goalsState.data}

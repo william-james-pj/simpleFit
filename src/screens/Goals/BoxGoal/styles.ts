@@ -4,6 +4,7 @@ import { TextInput } from "react-native";
 
 export const ViewContainer = styled.View`
   width: 95%;
+  height: 190px;
   background: ${(props) => props.theme.colors.interactive};
   margin: 0 auto;
   border-radius: 5px;
@@ -27,6 +28,7 @@ export const InputTitle = styled(TextInput)`
 
 export const ViewContent = styled.View`
   padding: 10px 20px;
+  height: 40%;
 `;
 
 export const InputText = styled(TextInput)`

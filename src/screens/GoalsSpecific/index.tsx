@@ -2,8 +2,6 @@ import React, { useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
 
-import { useScrollPosition } from "../../hooks/useScrollPosition";
-
 import { Header } from "../../components/Header";
 import { BoxSpecificGoal } from "./BoxSpecificGoals";
 import { Message } from "../../components/Message";
@@ -21,7 +19,6 @@ export function GoalsSpecific() {
   const flatList = useRef<FlatList<IItemSpecificGoals>>(null);
   const goalsState = useGoalsSelector((state) => state.goals.dataSelected);
 
-  const [activeHeader, getScrollPosition] = useScrollPosition();
   const navigation = useNavigation<GoalsSpecificRouteProp>();
 
   function handleGo(exercises: IItemExerciseGoals[], title: string) {
@@ -44,13 +41,10 @@ export function GoalsSpecific() {
         <Message
           title={goalsState.title}
           text={`Let's go, User!`}
-          active={activeHeader}
+          active={true}
         />
         <S.FlatListS
           ref={flatList}
-          onScroll={(event) => {
-            getScrollPosition(event);
-          }}
           contentContainerStyle={{ paddingBottom: 25 }}
           data={goalsState.elements}
           renderItem={renderRows}
