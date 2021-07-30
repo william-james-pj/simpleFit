@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 
 import { ColorModeContext } from "./src/contexts/ColorModeContext";
+import { ScreenProvider } from "./src/contexts/CurrentScreenContext";
 
 import { useFonts } from "expo-font";
 import {
@@ -28,9 +29,11 @@ export default function App() {
 
   return (
     <ColorModeContext>
-      <Provider store={store}>
-        <Routes />
-      </Provider>
+      <ScreenProvider>
+        <Provider store={store}>
+          <Routes />
+        </Provider>
+      </ScreenProvider>
     </ColorModeContext>
   );
 }

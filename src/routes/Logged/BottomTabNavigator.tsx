@@ -23,7 +23,7 @@ export function BottomTabNavigator() {
   const styles = StyleSheet.create({
     navigatorContainer: {
       backgroundColor: `transparent`,
-      height: 80,
+      height: 150,
 
       position: "absolute",
       bottom: 0,

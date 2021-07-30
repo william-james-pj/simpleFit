@@ -2,7 +2,7 @@ import { IItemGoals } from "../@types/types";
 
 export const DATA: IItemGoals[] = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "goals-1",
     title: "Treino",
     text: "Testando contador de caracterespara ter noção em quanto limitar no card do meu mais novo aplicativo.",
     elements: [
@@ -69,7 +69,7 @@ export const DATA: IItemGoals[] = [
     ],
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "goals-2",
     title: "Leitura",
     text: "Testando contador de caracterespara ter noção em quanto limitar no card do meu mais novo aplicativo.",
     elements: [
@@ -116,7 +116,7 @@ export const DATA: IItemGoals[] = [
     ],
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f64",
+    id: "goals-3",
     title: "Ingles",
     text: "Testando contador de caracterespara ter noção em quanto limitar no card do meu mais novo aplicativo.",
     elements: [

@@ -60,8 +60,8 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
           />
         </S.ViewContent>
         <S.ViewFooter>
-          <S.Number>{`${countFinishingGoals(goals)}/${
-            goals.elements?.length
+          <S.Number>{`${countFinishingGoals(goals) || 0}/${
+            goals.elements?.length || 0
           }`}</S.Number>
         </S.ViewFooter>
       </RectButton>

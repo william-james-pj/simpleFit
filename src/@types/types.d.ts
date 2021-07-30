@@ -2,7 +2,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 type RootStackParamList = {
   Goals: undefined;
-  GoalsSpecific: { goals: IItemSpecificGoals[]; title: string };
+  GoalsSpecific: undefined;
   GoalsExercise: { exercises: IItemExerciseGoals[]; title: string };
   Clock: undefined;
   Calendar: undefined;

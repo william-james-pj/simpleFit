@@ -53,8 +53,8 @@ export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
           />
         </S.ViewContent>
         <S.ViewFooter>
-          <S.Number>{`${countFinishingSpecific(specificGoals)}/${
-            specificGoals.elements?.length
+          <S.Number>{`${countFinishingSpecific(specificGoals) || 0}/${
+            specificGoals.elements?.length || 0
           }`}</S.Number>
         </S.ViewFooter>
       </RectButton>
