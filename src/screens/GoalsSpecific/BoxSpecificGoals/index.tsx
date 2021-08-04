@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { RectButton } from "react-native-gesture-handler";
+import {
+  RectButton,
+  LongPressGestureHandler,
+  State,
+} from "react-native-gesture-handler";
 
-// import { useGoalsDispatch } from "../../hooks/useGoals";
-// import {} from "../../store/goals";
+import { Modal } from "react-native";
+import { ModalDelete } from "../../../components/ModalDelete";
+
+import { useGoalsDispatch } from "../../../hooks/useGoals";
+import { removeSpecificGoals } from "../../../store/goals";
 
 import { IItemSpecificGoals } from "../../../@types/types";
 
@@ -14,10 +21,23 @@ interface BoxGoalProps {
 }
 
 export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
-  // const dispatch = useGoalsDispatch();
+  const dispatch = useGoalsDispatch();
 
+  const [modalVisible, setModalVisible] = useState(false);
   const [titleInput, setTitleInput] = useState(specificGoals?.title);
   const [textInput, setTextInput] = useState(specificGoals?.text);
+
+  const handleTitleUpdate = () => {
+    specificGoals.title = titleInput;
+  };
+
+  const handleModalVisible = () => {
+    setModalVisible(false);
+  };
+
+  const handleDelete = () => {
+    dispatch(removeSpecificGoals(specificGoals.id));
+  };
 
   function countFinishingSpecific(item: IItemSpecificGoals) {
     return item.elements?.reduce(
@@ -29,35 +49,43 @@ export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
     );
   }
 
-  const handleTitleUpdate = () => {
-    specificGoals.title = titleInput;
-  };
-
   return (
     <S.ViewContainer>
-      <RectButton onPress={click}>
-        <S.ViewHeader>
-          <S.InputTitle
-            underlineColorAndroid="transparent"
-            value={titleInput}
-            onChangeText={(text) => setTitleInput(text)}
-            onEndEditing={handleTitleUpdate}
-          />
-        </S.ViewHeader>
-        <S.ViewContent>
-          <S.InputText
-            underlineColorAndroid="transparent"
-            multiline
-            value={textInput}
-            onChangeText={(text) => setTextInput(text)}
-          />
-        </S.ViewContent>
-        <S.ViewFooter>
-          <S.Number>{`${countFinishingSpecific(specificGoals) || 0}/${
-            specificGoals.elements?.length || 0
-          }`}</S.Number>
-        </S.ViewFooter>
-      </RectButton>
+      <LongPressGestureHandler
+        onHandlerStateChange={({ nativeEvent }) => {
+          if (nativeEvent.state === State.ACTIVE) {
+            setModalVisible(!modalVisible);
+          }
+        }}
+        minDurationMs={800}
+      >
+        <RectButton onPress={click}>
+          <S.ViewHeader>
+            <S.InputTitle
+              underlineColorAndroid="transparent"
+              value={titleInput}
+              onChangeText={(text) => setTitleInput(text)}
+              onEndEditing={handleTitleUpdate}
+            />
+          </S.ViewHeader>
+          <S.ViewContent>
+            <S.InputText
+              underlineColorAndroid="transparent"
+              multiline
+              value={textInput}
+              onChangeText={(text) => setTextInput(text)}
+            />
+          </S.ViewContent>
+          <S.ViewFooter>
+            <S.Number>{`${countFinishingSpecific(specificGoals) || 0}/${
+              specificGoals.elements?.length || 0
+            }`}</S.Number>
+          </S.ViewFooter>
+        </RectButton>
+      </LongPressGestureHandler>
+      <Modal visible={modalVisible} transparent={true}>
+        <ModalDelete cancel={handleModalVisible} handleDelete={handleDelete} />
+      </Modal>
     </S.ViewContainer>
   );
 }

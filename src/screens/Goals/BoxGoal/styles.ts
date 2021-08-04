@@ -20,7 +20,6 @@ export const ViewHeader = styled.View`
 
 export const InputTitle = styled(TextInput)`
   width: auto;
-  min-width: 50%;
   font-family: ${fonts.type.text700};
   font-size: ${fonts.size.normal};
   color: ${(props) => props.theme.colors.text};

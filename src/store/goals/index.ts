@@ -19,6 +19,7 @@ const goals = createSlice({
     addGoalSelected(state, action: PayloadAction<IItemGoals>) {
       state.dataSelected = action.payload;
     },
+
     addGoals(state) {
       const newItem: IItemGoals = {
         id: generateUuid(state.data),
@@ -34,6 +35,9 @@ const goals = createSlice({
         goal.id === action.payload.id ? action.payload : goal
       );
     },
+    removeGoals(state, action: PayloadAction<string>) {
+      state.data = state.data.filter((goal) => goal.id !== action.payload);
+    },
 
     addSpecificGoals(state) {
       const newItem: IItemSpecificGoals = {
@@ -47,6 +51,19 @@ const goals = createSlice({
 
       state.data.forEach((goal) => {
         goal.id === state.dataSelected.id ? goal.elements?.push(newItem) : goal;
+      });
+    },
+    removeSpecificGoals(state, action: PayloadAction<string>) {
+      state.dataSelected.elements = state.dataSelected.elements?.filter(
+        (element) => element.id !== action.payload
+      );
+
+      state.data.forEach((goal) => {
+        goal.id === state.dataSelected.id
+          ? (goal.elements = goal.elements?.filter(
+              (element) => element.id !== action.payload
+            ))
+          : goal;
       });
     },
   },
@@ -64,6 +81,14 @@ const goals = createSlice({
   },
 });
 
-export const { updateGoals, addGoals, addSpecificGoals, addGoalSelected } =
-  goals.actions;
+export const {
+  addGoalSelected,
+
+  addGoals,
+  updateGoals,
+  removeGoals,
+
+  addSpecificGoals,
+  removeSpecificGoals,
+} = goals.actions;
 export default goals.reducer;
