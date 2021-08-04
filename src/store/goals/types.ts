@@ -5,4 +5,5 @@ export interface GoalsState {
   dataSelected: IItemGoals;
   error: boolean;
   loading: boolean;
+  newGoal: boolean;
 }

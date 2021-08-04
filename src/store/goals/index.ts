@@ -10,6 +10,7 @@ const initialState: GoalsState = {
   dataSelected: { id: "", text: "", title: "" },
   error: false,
   loading: false,
+  newGoal: false,
 };
 
 const goals = createSlice({
@@ -29,6 +30,8 @@ const goals = createSlice({
       };
 
       state.data.push(newItem);
+
+      state.newGoal = true;
     },
     updateGoals(state, action: PayloadAction<IItemGoals>) {
       state.data = state.data.map((goal) =>
@@ -52,6 +55,8 @@ const goals = createSlice({
       state.data.forEach((goal) => {
         goal.id === state.dataSelected.id ? goal.elements?.push(newItem) : goal;
       });
+
+      state.newGoal = true;
     },
     removeSpecificGoals(state, action: PayloadAction<string>) {
       state.dataSelected.elements = state.dataSelected.elements?.filter(
@@ -65,6 +70,10 @@ const goals = createSlice({
             ))
           : goal;
       });
+    },
+
+    resetNewGoal(state) {
+      state.newGoal = false;
     },
   },
   extraReducers: (builder) => {
@@ -90,5 +99,7 @@ export const {
 
   addSpecificGoals,
   removeSpecificGoals,
+
+  resetNewGoal,
 } = goals.actions;
 export default goals.reducer;

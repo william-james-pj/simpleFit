@@ -60,9 +60,11 @@ export function Goals({ navigation }: GoalsProps) {
             keyExtractor={(item) => item.id}
             ItemSeparatorComponent={() => <S.Separator></S.Separator>}
             ListFooterComponent={() => <S.FooterView></S.FooterView>}
-            onContentSizeChange={() =>
-              flatList.current?.scrollToEnd({ animated: true })
-            }
+            onContentSizeChange={() => {
+              if (goalsState.newGoal) {
+                flatList.current?.scrollToEnd({ animated: true });
+              }
+            }}
           />
         )}
       </S.Wrapper>

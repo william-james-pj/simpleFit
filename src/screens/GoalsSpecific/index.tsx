@@ -17,7 +17,7 @@ import { useGoalsSelector } from "../../hooks/useGoals";
 
 export function GoalsSpecific() {
   const flatList = useRef<FlatList<IItemSpecificGoals>>(null);
-  const goalsState = useGoalsSelector((state) => state.goals.dataSelected);
+  const goalsState = useGoalsSelector((state) => state.goals);
 
   const navigation = useNavigation<GoalsSpecificRouteProp>();
 
@@ -39,21 +39,23 @@ export function GoalsSpecific() {
       <Header back />
       <S.Wrapper>
         <Message
-          title={goalsState.title}
+          title={goalsState.dataSelected.title}
           text={`Let's go, User!`}
           active={true}
         />
         <S.FlatListS
           ref={flatList}
           contentContainerStyle={{ paddingBottom: 25 }}
-          data={goalsState.elements}
+          data={goalsState.dataSelected.elements}
           renderItem={renderRows}
           keyExtractor={(item) => `${item.id}`}
           ItemSeparatorComponent={() => <S.Separator></S.Separator>}
           ListFooterComponent={() => <S.FooterView></S.FooterView>}
-          onContentSizeChange={() =>
-            flatList.current?.scrollToEnd({ animated: true })
-          }
+          onContentSizeChange={() => {
+            if (goalsState.newGoal) {
+              flatList.current?.scrollToEnd({ animated: true });
+            }
+          }}
         />
       </S.Wrapper>
     </>

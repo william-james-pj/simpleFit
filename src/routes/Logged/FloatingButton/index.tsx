@@ -7,7 +7,7 @@ import * as S from "./styles";
 import { Animated } from "react-native";
 import { useCurrentScreen } from "../../../hooks/useScreen";
 import { useGoalsDispatch } from "../../../hooks/useGoals";
-import { addGoals, addSpecificGoals } from "../../../store/goals";
+import { addGoals, addSpecificGoals, resetNewGoal } from "../../../store/goals";
 
 interface FloatingButtonProps {
   bgColor: string;
@@ -23,11 +23,13 @@ export function FloatingButton({ bgColor }: FloatingButtonProps) {
   const handlePress = () => {
     if (screen === "Goals") {
       dispatch(addGoals());
+      dispatchResetNewGoal();
       return;
     }
 
     if (screen === "GoalsSpecific") {
       dispatch(addSpecificGoals());
+      dispatchResetNewGoal();
       return;
     }
 
@@ -36,6 +38,12 @@ export function FloatingButton({ bgColor }: FloatingButtonProps) {
     }
 
     handleAnimation();
+  };
+
+  const dispatchResetNewGoal = () => {
+    setTimeout(() => {
+      dispatch(resetNewGoal());
+    }, 500);
   };
 
   useEffect(() => {
