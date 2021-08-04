@@ -9,7 +9,7 @@ import { Modal } from "react-native";
 import { ModalDelete } from "../../../components/ModalDelete";
 
 import { useGoalsDispatch } from "../../../hooks/useGoals";
-import { removeSpecificGoals } from "../../../store/goals";
+import { removeSpecificGoals, updateSpecificGoals } from "../../../store/goals";
 
 import { IItemSpecificGoals } from "../../../@types/types";
 
@@ -24,11 +24,29 @@ export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
   const dispatch = useGoalsDispatch();
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [titleInput, setTitleInput] = useState(specificGoals?.title);
-  const [textInput, setTextInput] = useState(specificGoals?.text);
+  const titleInput = specificGoals.title;
+  const textInput = specificGoals.text;
 
-  const handleTitleUpdate = () => {
-    specificGoals.title = titleInput;
+  const handleUpdateTitle = (title: string) => {
+    const newGoal: IItemSpecificGoals = {
+      id: specificGoals.id,
+      title,
+      text: specificGoals.text,
+      elements: specificGoals.elements,
+      finishing: specificGoals.finishing,
+    };
+    dispatch(updateSpecificGoals(newGoal));
+  };
+
+  const handleUpdateText = (text: string) => {
+    const newGoal: IItemSpecificGoals = {
+      id: specificGoals.id,
+      title: specificGoals.title,
+      text,
+      elements: specificGoals.elements,
+      finishing: specificGoals.finishing,
+    };
+    dispatch(updateSpecificGoals(newGoal));
   };
 
   const handleModalVisible = () => {
@@ -64,8 +82,7 @@ export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
             <S.InputTitle
               underlineColorAndroid="transparent"
               value={titleInput}
-              onChangeText={(text) => setTitleInput(text)}
-              onEndEditing={handleTitleUpdate}
+              onChangeText={(text) => handleUpdateTitle(text)}
             />
           </S.ViewHeader>
           <S.ViewContent>
@@ -73,7 +90,8 @@ export function BoxSpecificGoal({ specificGoals, click }: BoxGoalProps) {
               underlineColorAndroid="transparent"
               multiline
               value={textInput}
-              onChangeText={(text) => setTextInput(text)}
+              onChangeText={(text) => handleUpdateText(text)}
+              maxLength={100}
             />
           </S.ViewContent>
           <S.ViewFooter>

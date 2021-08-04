@@ -58,6 +58,15 @@ const goals = createSlice({
 
       state.newGoal = true;
     },
+    updateSpecificGoals(state, action: PayloadAction<IItemSpecificGoals>) {
+      state.dataSelected.elements = state.dataSelected.elements?.map((goal) =>
+        goal.id === action.payload.id ? action.payload : goal
+      );
+
+      state.data = state.data.map((goal) =>
+        goal.id === state.dataSelected.id ? state.dataSelected : goal
+      );
+    },
     removeSpecificGoals(state, action: PayloadAction<string>) {
       state.dataSelected.elements = state.dataSelected.elements?.filter(
         (element) => element.id !== action.payload
@@ -98,6 +107,7 @@ export const {
   removeGoals,
 
   addSpecificGoals,
+  updateSpecificGoals,
   removeSpecificGoals,
 
   resetNewGoal,

@@ -24,17 +24,27 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
   const dispatch = useGoalsDispatch();
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [titleInput, setTitleInput] = useState(goals.title);
-  const [textInput, setTextInput] = useState(goals.text);
+  const titleInput = goals.title;
+  const textInput = goals.text;
 
-  const handleTitleUpdate = () => {
-    goals.title = titleInput;
-    dispatch(updateGoals(goals));
+  const handleUpdateTitle = (title: string) => {
+    const newGoal: IItemGoals = {
+      id: goals.id,
+      title,
+      text: goals.text,
+      elements: goals.elements,
+    };
+    dispatch(updateGoals(newGoal));
   };
 
-  const handleTextUpdate = () => {
-    goals.text = textInput;
-    dispatch(updateGoals(goals));
+  const handleUpdateText = (text: string) => {
+    const newGoal: IItemGoals = {
+      id: goals.id,
+      title: goals.title,
+      text,
+      elements: goals.elements,
+    };
+    dispatch(updateGoals(newGoal));
   };
 
   const handleModalVisible = () => {
@@ -70,8 +80,7 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
             <S.InputTitle
               underlineColorAndroid="transparent"
               value={titleInput}
-              onChangeText={(text) => setTitleInput(text)}
-              onEndEditing={handleTitleUpdate}
+              onChangeText={(text) => handleUpdateTitle(text)}
             />
           </S.ViewHeader>
           <S.ViewContent>
@@ -79,8 +88,8 @@ export function BoxGoal({ goals, click }: BoxGoalProps) {
               underlineColorAndroid="transparent"
               multiline
               value={textInput}
-              onChangeText={(text) => setTextInput(text)}
-              onEndEditing={handleTextUpdate}
+              onChangeText={(text) => handleUpdateText(text)}
+              maxLength={100}
             />
           </S.ViewContent>
           <S.ViewFooter>
